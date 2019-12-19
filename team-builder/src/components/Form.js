@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function Forms(props) {
   const [user, setUser] = useState({ id: null, name: ``, email: ``, role: `` });
@@ -19,8 +20,7 @@ export default function Forms(props) {
   return (
     <div>
       <form onSubmit={handlesubmit}>
-        <fieldset>
-          <legend>Sign UP</legend>
+        <fieldset className='formfield'>
           <label className='forms'>
             Name: &nbsp;
             <input
@@ -52,7 +52,11 @@ export default function Forms(props) {
               onChange={handlechange}
             />
           </label>
-          <button>Add New User</button>
+          <Button
+            style={{ margin: `0 auto`, marginBottom: `3%`, marginTop: `.5%` }}
+            type='submit'>
+            Submit
+          </Button>
         </fieldset>
       </form>
     </div>

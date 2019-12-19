@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function Editteam(props) {
   const [user, setUser] = useState(props.currentuser);
@@ -8,8 +9,8 @@ export default function Editteam(props) {
   };
 
   useEffect(() => {
-      setUser(props.currentuser)
-  }, [props])
+    setUser(props.currentuser);
+  }, [props]);
   return (
     <div>
       <form
@@ -17,8 +18,7 @@ export default function Editteam(props) {
           e.preventDefault();
           props.updateUser(user.id, user);
         }}>
-        <fieldset>
-          <legend>Sign UP</legend>
+        <fieldset className='formfield'>
           <label className='forms'>
             Name: &nbsp;
             <input
@@ -29,7 +29,6 @@ export default function Editteam(props) {
               onChange={handleInputChange}
             />
           </label>
-
           <label className='forms'>
             Email: &nbsp;
             <input
@@ -50,8 +49,16 @@ export default function Editteam(props) {
               onChange={handleInputChange}
             />
           </label>
-          <button>Update User</button>
-          <button onClick={() => props.setEditing(false)}>Cancel</button>
+          <Button style={{ margin: `0 auto`, marginTop: `.5%` }} type='submit'>
+            Update
+          </Button>{" "}
+          <Button
+            style={{ margin: `0 auto`, marginBottom: `3%`, marginTop: `.5%` }}
+            variant='secondary'
+            size='sm'
+            onClick={() => props.setEditing(false)}>
+            Cancel
+          </Button>
         </fieldset>
       </form>
     </div>

@@ -66,9 +66,10 @@ function App() {
 
   return (
     <div className='App'>
+      <h1>Team Management Tool</h1>
       {editing ? (
         <div>
-          <h1>Edit User</h1>
+          <h2>Edit Member</h2>
           <Editteam
             editTeam={editTeam}
             setEditing={setEditing}
@@ -77,7 +78,7 @@ function App() {
         </div>
       ) : (
         <div>
-          <h1>Add User</h1>
+          <h2>Add Member</h2>
           <Forms addNewteam={addNewteam} team={team}></Forms>
         </div>
       )}
