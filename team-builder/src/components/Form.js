@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Forms(props) {
-  const [user, setUser] = useState({ name: ``, email: ``, role: `` });
+  const [user, setUser] = useState({ id: null, name: ``, email: ``, role: `` });
 
   function handlechange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -10,9 +10,10 @@ export default function Forms(props) {
 
   function handlesubmit(e) {
     e.preventDefault();
+    if (!user.name || !user.email || !user.role) return;
     props.addNewteam(user);
     console.log(`user`, user);
-    setUser({ name: ``, email: ``, role: `` });
+    setUser({ id: null, name: ``, email: ``, role: `` });
   }
 
   return (
@@ -51,7 +52,7 @@ export default function Forms(props) {
               onChange={handlechange}
             />
           </label>
-          <input type='submit' value='Submit' />
+          <button>Add New User</button>
         </fieldset>
       </form>
     </div>
