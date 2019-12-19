@@ -44,6 +44,7 @@ function App() {
 
   const deleteUser = id => {
     setTeam(team.filter(t => t.id !== id));
+    setEditing(false);
   };
 
   const editTeam = user => {
@@ -78,9 +79,9 @@ function App() {
         <div>
           <h1>Add User</h1>
           <Forms addNewteam={addNewteam} team={team}></Forms>
-          <Team deleteUser={deleteUser} team={team} editTeam={editTeam}></Team>
         </div>
       )}
+      <Team deleteUser={deleteUser} team={team} editTeam={editTeam}></Team>
     </div>
   );
 }
