@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
+import { useFormState } from "./hooks/useFormState";
+import { Inputtextarea } from "./styles/FormStyles.js";
 
 export default function Forms(props) {
-  const [user, setUser] = useState({ id: null, name: ``, email: ``, role: `` });
-
-  function handlechange(e) {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(`change`, e.target.name, e.target.value);
-  }
-
-  function handlesubmit(e) {
-    e.preventDefault();
-    if (!user.name || !user.email || !user.role) return;
-    props.addNewteam(user);
-    console.log(`user`, user);
-    setUser({ id: null, name: ``, email: ``, role: `` });
-  }
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser, handlechange, handlesubmit] = useFormState(
+    {
+      id: null,
+      name: ``,
+      email: ``,
+      role: ``
+    },
+    props
+  );
 
   return (
     <div>
@@ -24,6 +22,7 @@ export default function Forms(props) {
           <label className='forms'>
             Name: &nbsp;
             <input
+              minLength='3'
               type='text'
               name='name'
               placeholder='Enter Name'
@@ -43,11 +42,13 @@ export default function Forms(props) {
             />
           </label>
           <label className='forms'>
-            Role: &nbsp;
-            <input
-              placeholder='Enter Role'
+            <Inputtextarea
+              placeholder='Enter Role and Job description'
               type='text'
               name='role'
+              cols='50'
+              rows='10'
+              minLength='5'
               value={user.role}
               onChange={handlechange}
             />

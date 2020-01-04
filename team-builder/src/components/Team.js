@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 
-export default function Team(props) {
+const Team = props => {
   return (
     <div className='teamDiv'>
       <ul>
         {props.team.length > 0 ? (
-          props.team.map(team => (
+          props.team.map(teams => (
             <div
+              key={teams.id}
               style={{
                 display: `flex`,
                 flexDirection: `column`,
@@ -15,12 +16,12 @@ export default function Team(props) {
                 alignItems: `flex-start`,
                 flexWrap: `wrap`
               }}>
-              <li> {team.name} </li>
-              <li>{team.email}</li>
-              <li>{team.role}</li>
+              <li> {teams.name} </li>
+              <li>{teams.email}</li>
+              <li>{teams.role}</li>
               <Button
                 onClick={() => {
-                  props.editTeam(team);
+                  props.editTeam(teams);
                 }}
                 variant='info'
                 size='sm'>
@@ -28,7 +29,7 @@ export default function Team(props) {
               </Button>
 
               <Button
-                onClick={() => props.deleteUser(team.id)}
+                onClick={() => props.deleteUser(teams.id)}
                 variant='danger'
                 size='sm'>
                 Delete
@@ -42,4 +43,5 @@ export default function Team(props) {
       </ul>
     </div>
   );
-}
+};
+export default Team;

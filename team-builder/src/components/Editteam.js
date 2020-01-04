@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import { useFormState } from "./hooks/useFormState";
+import { Inputtextarea } from "./styles/FormStyles.js";
 
 export default function Editteam(props) {
-  const [user, setUser] = useState(props.currentuser);
-
-  const handleInputChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  console.log(props);
+  const [user, setUser, handlechange] = useFormState(props.currentuser, props);
 
   useEffect(() => {
     setUser(props.currentuser);
-  }, [props]);
+  }, [setUser, props.currentuser]);
+
   return (
     <div>
       <form
@@ -26,7 +26,7 @@ export default function Editteam(props) {
               name='name'
               placeholder='Enter Name'
               value={user.name}
-              onChange={handleInputChange}
+              onChange={handlechange}
             />
           </label>
           <label className='forms'>
@@ -36,17 +36,18 @@ export default function Editteam(props) {
               type='text'
               name='email'
               value={user.email}
-              onChange={handleInputChange}
+              onChange={handlechange}
             />
           </label>
           <label className='forms'>
-            Role: &nbsp;
-            <input
+            <Inputtextarea
               placeholder='Enter Role'
               type='text'
               name='role'
+              cols='50'
+              rows='10'
               value={user.role}
-              onChange={handleInputChange}
+              onChange={handlechange}
             />
           </label>
           <Button style={{ margin: `0 auto`, marginTop: `.5%` }} type='submit'>

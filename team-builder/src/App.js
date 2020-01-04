@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Forms from "./components/Form";
 import Team from "./components/Team";
 import Editteam from "./components/Editteam";
 
 function App() {
-  const newteam = [
+  const ourteam = [
     {
       id: 1,
       name: `Jeff`,
@@ -20,7 +19,7 @@ function App() {
       role: `Frontend`
     }
   ];
-  const [team, setTeam] = useState(newteam);
+  const [team, setTeam] = useState(ourteam);
   const [editing, setEditing] = useState(false);
   const [currentuser, setCurrentuser] = useState({
     id: null,
@@ -29,12 +28,12 @@ function App() {
     role: ``
   });
 
-  const addNewteam = teams => {
+  const addNewteam = t => {
     const newTeam = {
-      id: team.length + 1,
-      name: teams.name,
-      email: teams.email,
-      role: teams.role
+      id: Date.now(),
+      name: t.name,
+      email: t.email,
+      role: t.role
     };
 
     setTeam([...team, newTeam]);
@@ -43,7 +42,7 @@ function App() {
   console.log(team);
 
   const deleteUser = id => {
-    setTeam(team.filter(t => t.id !== id));
+    setTeam(team.filter(t => t.id !== id, console.log(id, `id`)));
     setEditing(false);
   };
 
