@@ -1,5 +1,58 @@
+@import url(
+  https://fonts.googleapis.com/css?family=Roboto+Mono:100,
+  100italic,
+  300,
+  300italic,
+  regular,
+  italic,
+  500,
+  500italic,
+  700,
+  700italic
+);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif:regular);
 .App {
   text-align: center;
+  font-size: 62.5%;
+}
+.formfield {
+  display: flex;
+}
+fieldset {
+  padding-bottom: 10%;
+}
+
+form {
+  font-size: 0.8rem;
+}
+
+h1 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 3rem;
+  color: rgb(0, 32, 139);
+}
+h2 {
+  font-family: "Bree Serif", serif;
+  font-size: 2rem;
+}
+p,
+li,
+ul {
+  font-size: 1.2rem;
+}
+
+.btn {
+  margin-bottom: 4px;
+  margin-top: 1px;
+}
+
+.teamDiv {
+  display: flex;
+}
+
+ul {
+  display: flex;
+  width: 100%;
 }
 
 .App-logo {

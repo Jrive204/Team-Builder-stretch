@@ -1,22 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Button from "react-bootstrap/Button";
 
-export default function Team(props) {
-  const changeteam = () => {
-    props.EditTeam();
-  };
+const Team = props => {
   return (
-    <div>
+    <div className='teamDiv'>
       <ul>
-        {props.team.map((team, i) => (
-          <ul>
-            <li> {team.name} </li>
-            <li>{team.email}</li>
-            <li>{team.role}</li>
-            <button onClick={() => props.deleteUser(team)}>edit</button>
-            <span>&nbsp;</span>
-          </ul>
-        ))}
+        {props.team.length > 0 ? (
+          props.team.map(teams => (
+            <div
+              key={teams.id}
+              style={{
+                display: `flex`,
+                flexDirection: `column`,
+                width: `15%`,
+                alignItems: `flex-start`,
+                flexWrap: `wrap`
+              }}>
+              <li> {teams.name} </li>
+              <li>{teams.email}</li>
+              <li>{teams.role}</li>
+              <Button
+                onClick={() => {
+                  props.editTeam(teams);
+                }}
+                variant='info'
+                size='sm'>
+                Edit
+              </Button>
+
+              <Button
+                onClick={() => props.deleteUser(teams.id)}
+                variant='danger'
+                size='sm'>
+                Delete
+              </Button>
+              <span>&nbsp;</span>
+            </div>
+          ))
+        ) : (
+          <p>no user</p>
+        )}
       </ul>
     </div>
   );
-}
+};
+export default Team;

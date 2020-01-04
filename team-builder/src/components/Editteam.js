@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { useFormState } from "./hooks/useFormState";
 import { Inputtextarea } from "./styles/FormStyles.js";
 
-export default function Forms(props) {
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser, handlechange, handlesubmit] = useFormState(
-    {
-      id: null,
-      name: ``,
-      email: ``,
-      role: ``
-    },
-    props
-  );
+export default function Editteam(props) {
+  console.log(props);
+  const [user, setUser, handlechange] = useFormState(props.currentuser, props);
+
+  useEffect(() => {
+    setUser(props.currentuser);
+  }, [setUser, props.currentuser]);
 
   return (
     <div>
-      <form onSubmit={handlesubmit}>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          props.updateUser(user.id, user);
+        }}>
         <fieldset className='formfield'>
           <label className='forms'>
             Name: &nbsp;
             <input
-              minLength='3'
               type='text'
               name='name'
               placeholder='Enter Name'
@@ -30,7 +29,6 @@ export default function Forms(props) {
               onChange={handlechange}
             />
           </label>
-
           <label className='forms'>
             Email: &nbsp;
             <input
@@ -43,20 +41,24 @@ export default function Forms(props) {
           </label>
           <label className='forms'>
             <Inputtextarea
-              placeholder='Enter Role and Job description'
+              placeholder='Enter Role'
               type='text'
               name='role'
               cols='50'
               rows='10'
-              minLength='5'
               value={user.role}
               onChange={handlechange}
             />
           </label>
+          <Button style={{ margin: `0 auto`, marginTop: `.5%` }} type='submit'>
+            Update
+          </Button>{" "}
           <Button
             style={{ margin: `0 auto`, marginBottom: `3%`, marginTop: `.5%` }}
-            type='submit'>
-            Submit
+            variant='secondary'
+            size='sm'
+            onClick={() => props.setEditing(false)}>
+            Cancel
           </Button>
         </fieldset>
       </form>
